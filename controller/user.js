@@ -80,9 +80,10 @@ router.put("/person/:id", auth, async (req, res, next) => {
         });
     }
 });
+//获取列表条数
 router.get("/total", auth, async (req, res, next) => {
     try {
-        const total =await userModel.find().count();
+        const total = await userModel.find().count();
         res.json({
             code: 200,
             total
@@ -91,6 +92,7 @@ router.get("/total", auth, async (req, res, next) => {
         next(err);
     }
 });
+//获取用户列表
 router.get("/list", auth, async (req, res, next) => {
     try {
         let { page = 1, page_size = 8 } = req.query;
@@ -98,6 +100,7 @@ router.get("/list", auth, async (req, res, next) => {
         page_size = parseInt(page_size);
         const data = await userModel
             .find()
+            .sort({ _id: -1 })
             .skip((page - 1) * page_size)
             .limit(page_size);
         res.json({

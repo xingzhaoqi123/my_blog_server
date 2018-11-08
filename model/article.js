@@ -14,7 +14,7 @@ var articleSchema = new mongoose.Schema(
         desc: String,
         sourse: Number,
         visible: Number,
-        blogType: Array
+        blogTypes: Array
         // likeCount: {
         //     type: Number,
         //     default: 0
